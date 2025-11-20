@@ -7,33 +7,36 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
-public protocol APIClientAccessTokenRefresh: class {
+public protocol APIClientAccessTokenRefresh: AnyObject {
     func apiClient(client: APIClient, requestToRefreshToken token: AccessToken) -> APIRequestFor<AccessToken>
 }
 
 public class APIClient {
     
-    public let baseURL: NSURL
+    public let baseURL: URL
     private let session: NetworkSession
     private(set) var credentialsStorage: APICredentialsStorage
     
     public weak var accessTokenRefresh: APIClientAccessTokenRefresh?
     
-    public init(baseURL: NSURL, session: NetworkSession = NetworkSessionImp()) {
+    public init(baseURL: URL, session: NetworkSession = NetworkSessionImp()) {
         self.baseURL = baseURL
         self.session = session
         self.credentialsStorage = session.credentialsStorage
     }
 
-    public func request<ResultType>(request: APIRequestFor<ResultType>, completion: APIResponseOf<ResultType> -> Void) -> APIRequestTask {
-        accessTokenRequest = refreshTokenIfNeeded(accessToken)
+    public func request<ResultType>(request: APIRequestFor<ResultType>, completion: @escaping (APIResponseOf<ResultType>) -> Void) -> APIRequestTask {
+        let accessTokenRequest = refreshTokenIfNeeded(accessToken)
         return session.scheduleRequest(request, after: accessTokenRequest != nil ? [accessTokenRequest!] : [], completionHandler: completion)
     }
     
-    func refreshTokenIfNeeded(token: AccessToken?, completion: ((AccessToken?, ErrorType?) -> Void)? = nil) -> APIRequestTask?  {
+    func refreshTokenIfNeeded(_ token: AccessToken?, completion: ((AccessToken?, Error?) -> Void)? = nil) -> APIRequestTask?  {
         if shouldRenewToken(token) && accessTokenRefresh != nil {
-            let refreshTokenRequest = accessTokenRefresh!.apiClient(self, requestToRefreshToken: token!)
+            let refreshTokenRequest = accessTokenRefresh!.apiClient(client: self, requestToRefreshToken: token!)
             return session.scheduleRequest(refreshTokenRequest, after: [], completionHandler: { (response: APIResponseOf<AccessToken>) in
                 if let error = response.error {
                     self.session.cancelTasksDependentOnTask(self.accessTokenRequest!, error: error)
@@ -47,7 +50,7 @@ public class APIClient {
     
     private var accessTokenRequest: APIRequestTask? = nil
 
-    func shouldRenewToken(token: AccessToken?) -> Bool {
+    func shouldRenewToken(_ token: AccessToken?) -> Bool {
         return token != nil && token!.isNearToExpire() && accessTokenRequest == nil
     }
 

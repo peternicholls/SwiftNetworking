@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 public protocol PaginationMetadata: JSONDecodable {
     var page: Int {get}
@@ -31,8 +34,8 @@ extension PaginationMetadata {
 
 public protocol Pagination {
     
+    associatedtype PaginationMetadataType: PaginationMetadata
     var metadata: PaginationMetadataType? {get}
-    typealias PaginationMetadataType: PaginationMetadata
     
     init(metadata: PaginationMetadataType?)
 }
@@ -55,7 +58,7 @@ extension Pagination {
 }
 
 public protocol AnyPagination: Pagination, JSONDecodable, APIResponseDecodable {
-    typealias Element: JSONDecodable
+    associatedtype Element: JSONDecodable
     
     var items: [Element] {get}
     init(items: [Element], metadata: PaginationMetadataType?)
@@ -69,8 +72,8 @@ extension AnyPagination {
      public init?(jsonDictionary: JSONDictionary?) {
         guard let
             json = JSONObject(jsonDictionary),
-            items: [Element] = json.keyPath(Self.itemsKey()),
-            metadata: PaginationMetadataType = json.keyPath(Self.paginationKey())
+            let items: [Element] = json.keyPath(Self.itemsKey()),
+            let metadata: PaginationMetadataType = json.keyPath(Self.paginationKey())
             else {
                 return nil
         }
@@ -79,7 +82,7 @@ extension AnyPagination {
 }
 
 extension AnyPagination {
-    public init?(apiResponseData: NSData) throws {
+    public init?(apiResponseData: Data) throws {
         guard let jsonDictionary: JSONDictionary = try apiResponseData.decodeToJSON() else {
             return nil
         }

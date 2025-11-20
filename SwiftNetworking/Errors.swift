@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 public let NetworkErrorDomain = "Network.Errors"
 
@@ -25,7 +28,7 @@ public enum NetworkErrorCode : Int {
 
 extension NSError {
     
-    public convenience init(code: NetworkErrorCode, userInfo dict: [NSObject : AnyObject]? = nil) {
+    public convenience init(code: NetworkErrorCode, userInfo dict: [String : Any]? = nil) {
         self.init(domain: NetworkErrorDomain, code: code.rawValue, userInfo: dict)
     }
     
@@ -33,24 +36,24 @@ extension NSError {
         return NSError(code: code, userInfo: error != nil ? [NSUnderlyingErrorKey: error!] : nil)
     }
 
-    static func backendError(statusCode: Int, data: NSData?) -> ErrorType? {
+    static func backendError(statusCode: Int, data: Data?) -> Error? {
         switch statusCode {
         case 200..<300: return nil
         case 401:
-            return NSError(code: .Unauthorized, userInfo: backendErrorUserInfo(statusCode, data: data))
+            return NSError(code: .Unauthorized, userInfo: backendErrorUserInfo(statusCode: statusCode, data: data))
         default:
-            return NSError(code: .BackendError, userInfo: backendErrorUserInfo(statusCode, data: data))
+            return NSError(code: .BackendError, userInfo: backendErrorUserInfo(statusCode: statusCode, data: data))
         }
     }
     
-    static func backendErrorUserInfo(statusCode: Int, data: NSData?) -> [NSObject: AnyObject]? {
-        var userInfo: [NSObject: AnyObject] = ["statusCode": statusCode]
+    static func backendErrorUserInfo(statusCode: Int, data: Data?) -> [String: Any]? {
+        var userInfo: [String: Any] = ["statusCode": statusCode]
         if let data = data {
             do {
-                userInfo["response"] = try NSJSONSerialization.JSONObjectWithData(data, options: [.AllowFragments])
+                userInfo["response"] = try JSONSerialization.jsonObject(with: data, options: [.allowFragments])
             }
             catch {
-                userInfo["response"] = NSString(data: data, encoding: NSUTF8StringEncoding)
+                userInfo["response"] = String(data: data, encoding: .utf8)
             }
         }
         return userInfo

@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 public enum HTTPMethod: String {
     case GET    = "GET"
@@ -23,7 +26,7 @@ public protocol Endpoint {
 
 public typealias MIMEType = String
 
-public enum HTTPContentType: RawRepresentable {
+public enum HTTPContentType: RawRepresentable, Sendable {
 
     case JSON
     case form
@@ -47,7 +50,7 @@ public enum HTTPContentType: RawRepresentable {
     }
 }
 
-public enum HTTPHeader: Equatable {
+public enum HTTPHeader: Equatable, Sendable {
     
     case ContentDisposition(String)
     case Accept([HTTPContentType])
@@ -76,7 +79,7 @@ public enum HTTPHeader: Equatable {
             return disposition
         case .Accept(let types):
             let typeStrings = types.map({$0.rawValue})
-            return typeStrings.joinWithSeparator(", ")
+            return typeStrings.joined(separator: ", ")
         case .ContentType(let type):
             return type.rawValue
         case .Authorization(let token):
@@ -86,7 +89,7 @@ public enum HTTPHeader: Equatable {
         }
     }
     
-    public func setRequestHeader(request: NSMutableURLRequest) {
+    public func setRequestHeader(_ request: inout URLRequest) {
         request.setValue(requestHeaderValue, forHTTPHeaderField: key)
     }
 }
@@ -98,20 +101,20 @@ public func ==(lhs: HTTPHeader, rhs: HTTPHeader) -> Bool {
 }
 
 public protocol APIRequestDataEncodable {
-    func encodeForAPIRequestData() throws -> NSData
+    func encodeForAPIRequestData() throws -> Data
 }
 
 public protocol APIResponseDecodable {
-    init?(apiResponseData: NSData) throws
+    init?(apiResponseData: Data) throws
 }
 
 public typealias APIRequestQuery = [String: String]
 
 public protocol APIRequestType {
     
-    var body: NSData? {get}
+    var body: Data? {get}
     var endpoint: Endpoint {get}
-    var baseURL: NSURL {get}
+    var baseURL: URL {get}
     var headers: [HTTPHeader] {get}
     var query: APIRequestQuery {get}
     
@@ -119,13 +122,13 @@ public protocol APIRequestType {
 
 public struct APIRequestFor<ResultType: APIResponseDecodable>: APIRequestType {
     
-    public let body: NSData?
+    public let body: Data?
     public let endpoint: Endpoint
-    public let baseURL: NSURL
+    public let baseURL: URL
     public let headers: [HTTPHeader]
     public let query: APIRequestQuery
 
-    public init(endpoint: Endpoint, baseURL: NSURL, query: APIRequestQuery = APIRequestQuery(), headers: [HTTPHeader] = []) {
+    public init(endpoint: Endpoint, baseURL: URL, query: APIRequestQuery = APIRequestQuery(), headers: [HTTPHeader] = []) {
         self.endpoint = endpoint
         self.baseURL = baseURL
         self.query = query
@@ -133,7 +136,7 @@ public struct APIRequestFor<ResultType: APIResponseDecodable>: APIRequestType {
         self.body = nil
     }
 
-    public init(endpoint: Endpoint, baseURL: NSURL, input: APIRequestDataEncodable, query: APIRequestQuery = APIRequestQuery(), headers: [HTTPHeader] = []) throws {
+    public init(endpoint: Endpoint, baseURL: URL, input: APIRequestDataEncodable, query: APIRequestQuery = APIRequestQuery(), headers: [HTTPHeader] = []) throws {
         self.endpoint = endpoint
         self.baseURL = baseURL
         self.query = query
@@ -141,7 +144,7 @@ public struct APIRequestFor<ResultType: APIResponseDecodable>: APIRequestType {
         self.body = try input.encodeForAPIRequestData()
     }
     
-    public init(endpoint: Endpoint, baseURL: NSURL, body: NSData, query: APIRequestQuery = APIRequestQuery(), headers: [HTTPHeader] = []) {
+    public init(endpoint: Endpoint, baseURL: URL, body: Data, query: APIRequestQuery = APIRequestQuery(), headers: [HTTPHeader] = []) {
         self.endpoint = endpoint
         self.baseURL = baseURL
         self.query = query

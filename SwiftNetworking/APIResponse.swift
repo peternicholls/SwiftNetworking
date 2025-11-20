@@ -7,58 +7,61 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 public protocol APIResponse {
     
-    var httpResponse: NSHTTPURLResponse? {get}
-    var data: NSData? {get}
-    var error: ErrorType? {get}
-    var originalRequest: NSURLRequest? {get}
+    var httpResponse: HTTPURLResponse? {get}
+    var data: Data? {get}
+    var error: Error? {get}
+    var originalRequest: URLRequest? {get}
     var contentType: HTTPContentType? {get}
     
 }
 
 public struct APIResponseOf<ResultType: APIResponseDecodable>: APIResponse {
     
-    public let httpResponse: NSHTTPURLResponse?
-    public let data: NSData?
-    public let originalRequest: NSURLRequest?
-    internal(set) public var error: ErrorType?
+    public let httpResponse: HTTPURLResponse?
+    public let data: Data?
+    public let originalRequest: URLRequest?
+    internal(set) public var error: Error?
     internal(set) public var result: ResultType?
     
-    init(request: NSURLRequest?, data: NSData?, httpResponse: NSURLResponse?, error: ErrorType?) {
+    init(request: URLRequest?, data: Data?, httpResponse: URLResponse?, error: Error?) {
         self.originalRequest = request
-        self.httpResponse = httpResponse as? NSHTTPURLResponse
+        self.httpResponse = httpResponse as? HTTPURLResponse
         self.data = data
         self.error = error
         self.result = nil
     }
     
-    init(_ r: (request: NSURLRequest!, data: NSData!, httpResponse: NSURLResponse!, error: ErrorType!)) {
+    init(_ r: (request: URLRequest?, data: Data?, httpResponse: URLResponse?, error: Error?)) {
         self.init(request: r.request, data: r.data, httpResponse: r.httpResponse, error: r.error)
     }
     
     public var contentType: HTTPContentType? {
         get {
-            return httpResponse?.MIMEType.flatMap {HTTPContentType(rawValue: $0)}
+            return httpResponse?.mimeType.flatMap {HTTPContentType(rawValue: $0)}
         }
     }
     
-    public func map<T>(f: ResultType -> T) -> APIResponseOf<T> {
+    public func map<T>(_ f: (ResultType) -> T) -> APIResponseOf<T> {
         return flatMap(f)
     }
     
-    public func mapError<E: ErrorType>(f: ErrorType -> E) -> APIResponseOf {
+    public func mapError<E: Error>(_ f: (Error) -> E) -> APIResponseOf {
         return flatMapError(f)
     }
     
-    public func flatMap<T>(f: ResultType -> T?) -> APIResponseOf<T> {
+    public func flatMap<T>(_ f: (ResultType) -> T?) -> APIResponseOf<T> {
         var response = APIResponseOf<T>(request: originalRequest, data: data, httpResponse: httpResponse, error: error)
         response.result = result.flatMap(f)
         return response
     }
     
-    public func flatMapError<E: ErrorType>(f: ErrorType -> E?) -> APIResponseOf {
+    public func flatMapError<E: Error>(_ f: (Error) -> E?) -> APIResponseOf {
         var response = APIResponseOf(request: originalRequest, data: data, httpResponse: httpResponse, error: error.flatMap(f) ?? error)
         response.result = result
         return response
@@ -67,7 +70,7 @@ public struct APIResponseOf<ResultType: APIResponseDecodable>: APIResponse {
 }
 
 public struct None: APIResponseDecodable {
-    public init?(apiResponseData: NSData) throws {
+    public init?(apiResponseData: Data) throws {
         return nil
     }
 }

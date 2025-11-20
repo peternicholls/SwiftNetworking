@@ -7,42 +7,52 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
-final public class APIRequestTask: Task, Resumable, Cancellable, Equatable {
+final public class APIRequestTask: Task, Resumable, Cancellable, Equatable, @unchecked Sendable {
     
     public typealias TaskIdentifier = Int
     
-    var onCancel: ((APIRequestTask, ErrorType?) -> ())?
-    private var completionHandlers: [APIResponseDecodable -> Void] = []
+    var onCancel: ((APIRequestTask, Error?) -> ())?
+    private var completionHandlers: [(APIResponseDecodable) -> Void] = []
     
-    public func addCompletionHandler(handler: APIResponseDecodable -> Void) {
+    public func addCompletionHandler(_ handler: @escaping (APIResponseDecodable) -> Void) {
         completionHandlers.append(handler)
     }
     
-    let session: NSURLSession
-    let requestBuilder: () throws -> NSURLRequest
+    let session: URLSession
+    let requestBuilder: () throws -> URLRequest
     
-    private static var requestTasksCounter = 0
+    private static let counterLock = NSLock()
+    nonisolated(unsafe) private static var _requestTasksCounter = 0
+    private static func nextTaskIdentifier() -> Int {
+        counterLock.lock()
+        defer { counterLock.unlock() }
+        _requestTasksCounter += 1
+        return _requestTasksCounter
+    }
     
-    init(request: APIRequestType, session: NSURLSession, requestBuilder: APIRequestType throws -> NSURLRequest) {
-        self.taskIdentifier = ++APIRequestTask.requestTasksCounter
+    init(request: APIRequestType, session: URLSession, requestBuilder: @escaping (APIRequestType) throws -> URLRequest) {
+        self.taskIdentifier = APIRequestTask.nextTaskIdentifier()
         self.session = session
-        self.requestBuilder = { () throws -> NSURLRequest in
+        self.requestBuilder = { () throws -> URLRequest in
             return try requestBuilder(request)
         }
     }
     
     private(set) public var taskIdentifier: TaskIdentifier
     
-    private var sessionTask: NSURLSessionTask!
+    private var sessionTask: URLSessionTask!
     
-    var originalRequest: NSURLRequest? {
+    var originalRequest: URLRequest? {
         get {
             return sessionTask?.originalRequest
         }
     }
     
-    func isTaskForSessionTask(task: NSURLSessionTask) -> Bool {
+    func isTaskForSessionTask(_ task: URLSessionTask) -> Bool {
         if let sessionTask = sessionTask {
             return sessionTask === task
         }
@@ -55,7 +65,7 @@ extension APIRequestTask {
     func resume() {
         do {
             let httpRequest = try requestBuilder()
-            sessionTask = self.session.dataTaskWithRequest(httpRequest)
+            sessionTask = self.session.dataTask(with: httpRequest)
             sessionTask.resume()
         }
         catch {
@@ -66,7 +76,7 @@ extension APIRequestTask {
 
 //MARK: - Cancellable
 extension APIRequestTask {
-    func cancel(error: ErrorType?) {
+    func cancel(_ error: Error?) {
         if let sessionTask = sessionTask {
             sessionTask.cancel()
         }

@@ -7,25 +7,28 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
-public protocol NetworkSession: class {
+public protocol NetworkSession: AnyObject {
     
-    func scheduleRequest<ResultType>(request: APIRequestFor<ResultType>, after: [APIRequestTask], completionHandler: (APIResponseOf<ResultType> -> Void)?) -> APIRequestTask
-    func cancelTasksDependentOnTask(task: APIRequestTask, error: ErrorType?)
+    func scheduleRequest<ResultType>(_ request: APIRequestFor<ResultType>, after: [APIRequestTask], completionHandler: ((APIResponseOf<ResultType>) -> Void)?) -> APIRequestTask
+    func cancelTasksDependentOnTask(_ task: APIRequestTask, error: Error?)
     
     var credentialsStorage: APICredentialsStorage {get}
 }
 
-public class NetworkSessionImp: NSObject, NetworkSession, NSURLSessionDataDelegate {
+public class NetworkSessionImp: NSObject, NetworkSession, URLSessionDataDelegate, @unchecked Sendable {
     
-    private typealias TaskCompletionHandler = (NSURLRequest!, NSData!, NSURLResponse!, ErrorType!) -> Void
+    private typealias TaskCompletionHandler = (URLRequest?, Data?, URLResponse?, Error?) -> Void
     private typealias TaskIdentifier = APIRequestTask.TaskIdentifier
     
-    private(set) public var session: NSURLSession!
+    private(set) public var session: URLSession!
     
     private var completionHandlers = [TaskIdentifier: TaskCompletionHandler]()
-    private var recievedData = [TaskIdentifier: NSMutableData]()
-    private let resultsQueue: dispatch_queue_t
+    private var recievedData = [TaskIdentifier: Data]()
+    private let resultsQueue: DispatchQueue
     
     private var tasks = [APIRequestTask]()
     
@@ -44,11 +47,11 @@ public class NetworkSessionImp: NSObject, NetworkSession, NSURLSessionDataDelega
     let responseProcessing: APIResponseProcessing
     private(set) public var credentialsStorage: APICredentialsStorage
     
-    private let privateQueue: dispatch_queue_t = dispatch_queue_create("NetworkSessionQueue", DISPATCH_QUEUE_SERIAL)
+    private let privateQueue: DispatchQueue = DispatchQueue(label: "NetworkSessionQueue")
 
     public init(
-        configuration: NSURLSessionConfiguration = NetworkSessionImp.foregroundSessionConfiguration(),
-        resultsQueue: dispatch_queue_t = dispatch_get_main_queue(),
+        configuration: URLSessionConfiguration = NetworkSessionImp.foregroundSessionConfiguration(),
+        resultsQueue: DispatchQueue = DispatchQueue.main,
         requestProcessing: APIRequestProcessing = DefaultAPIRequestProcessing(),
         requestSigning: APIRequestSigning = DefaultAPIRequestSigning(),
         responseProcessing: APIResponseProcessing = DefaultAPIResponseProcessing(),
@@ -60,21 +63,21 @@ public class NetworkSessionImp: NSObject, NetworkSession, NSURLSessionDataDelega
         self.responseProcessing = responseProcessing
         self.credentialsStorage = credentialsStorage
         super.init()
-        self.session = NSURLSession(configuration: configuration, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
+        self.session = URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
     }
     
-    public static func foregroundSessionConfiguration(additinalHeaders: [HTTPHeader] = []) -> NSURLSessionConfiguration {
-        let configuration = NSURLSessionConfiguration.ephemeralSessionConfiguration()
-        configuration.HTTPAdditionalHeaders = [:]
+    public static func foregroundSessionConfiguration(additinalHeaders: [HTTPHeader] = []) -> URLSessionConfiguration {
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.httpAdditionalHeaders = [:]
         for header in additinalHeaders {
-            configuration.HTTPAdditionalHeaders![header.key] = header.requestHeaderValue
+            configuration.httpAdditionalHeaders![header.key] = header.requestHeaderValue
         }
         return configuration
     }
     
-    public func scheduleRequest<ResultType>(request: APIRequestFor<ResultType>, after: [APIRequestTask] = [], completionHandler: (APIResponseOf<ResultType> -> Void)?) -> APIRequestTask {
+    public func scheduleRequest<ResultType>(_ request: APIRequestFor<ResultType>, after: [APIRequestTask] = [], completionHandler: ((APIResponseOf<ResultType>) -> Void)?) -> APIRequestTask {
         var task: APIRequestTask!
-        dispatch_sync(privateQueue) {
+        privateQueue.sync {
             task = APIRequestTask(request: request, session: self.session, requestBuilder: self.buildRequest)
             task.onCancel = self.taskCancelled
             self.tasks.append(task)
@@ -84,91 +87,90 @@ public class NetworkSessionImp: NSObject, NetworkSession, NSURLSessionDataDelega
         return task
     }
     
-    private func buildRequest(request: APIRequestType) throws -> NSURLRequest {
-        let httpRequest: NSMutableURLRequest
+    private func buildRequest(_ request: APIRequestType) throws -> URLRequest {
+        var httpRequest: URLRequest
         httpRequest = try self.requestProcessing.processRequest(request)
         if request.endpoint.signed {
-            return try self.requestSigning.signRequest(httpRequest, storage: self.credentialsStorage)
+            return try self.requestSigning.signRequest(&httpRequest, storage: self.credentialsStorage)
         }
         return httpRequest
     }
     
-    private func completeRequest<ResultType>(request: APIRequestFor<ResultType>, withHandler completionHandler: (APIResponseOf<ResultType> -> Void)?) -> TaskCompletionHandler {
-        return { response in
-            let apiResponse = self.responseProcessing.processResponse(APIResponseOf<ResultType>(response), request: request)
+    private func completeRequest<ResultType>(_ request: APIRequestFor<ResultType>, withHandler completionHandler: ((APIResponseOf<ResultType>) -> Void)?) -> TaskCompletionHandler {
+        return { urlRequest, data, urlResponse, error in
+            let apiResponse = self.responseProcessing.processResponse(APIResponseOf<ResultType>(request: urlRequest, data: data, httpResponse: urlResponse, error: error), request: request)
             
             if let token = apiResponse.result as? AccessToken {
                 self.accessToken = self.accessToken?.refreshTokenWithToken(token) ?? token
             }
             
-            dispatch_async(self.resultsQueue) {
+            self.resultsQueue.async {
                 completionHandler?(apiResponse)
             }
         }
     }
     
-    private func finishTask(sessionTask: NSURLSessionTask?, _ transportTask: APIRequestTask) {
+    private func finishTask(_ sessionTask: URLSessionTask?, _ transportTask: APIRequestTask) {
         self.completionHandlers[transportTask.taskIdentifier] = nil
         if let sessionTask = sessionTask {
             self.recievedData[sessionTask.taskIdentifier] = nil
         }
 
-        if let index = self.tasks.indexOf(transportTask) {
-            self.tasks.removeAtIndex(index)
+        if let index = self.tasks.firstIndex(of: transportTask) {
+            self.tasks.remove(at: index)
         }
         NetworkSessionImp.scheduler.nextTask(transportTask)
     }
     
-    private func taskCancelled(task: APIRequestTask, error: ErrorType?) {
-        dispatch_async(privateQueue) {
+    private func taskCancelled(_ task: APIRequestTask, error: Error?) {
+        privateQueue.async {
             let comletionHandler = self.completionHandlers[task.taskIdentifier]
             self.completionHandlers[task.taskIdentifier] = nil
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async { () -> Void in
                 comletionHandler?(task.originalRequest, nil, nil, error)
-            })
+            }
             self.finishTask(nil, task)
         }
     }
     
-    public func cancelTasksDependentOnTask(task: APIRequestTask, error: ErrorType?) {
+    public func cancelTasksDependentOnTask(_ task: APIRequestTask, error: Error?) {
         NetworkSessionImp.scheduler.cancelTasksDependentOnTask(task.taskIdentifier, error: error)
     }
 }
 
-//MARK: NSURLSession delegate
+//MARK: URLSession delegate
 extension NetworkSessionImp {
     
-    private func transportTaskCancelled(transportTask: APIRequestTask, error: NSError?) -> Bool {
-        if let error = error, onCancel = transportTask.onCancel where
-            error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled {
-                onCancel(transportTask, error)
-                return true;
+    private func transportTaskCancelled(_ transportTask: APIRequestTask, error: NSError?) -> Bool {
+        if let error = error, let onCancel = transportTask.onCancel, error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled {
+            onCancel(transportTask, error)
+            return true;
         }
         return false;
     }
     
-    private func completeTask(task: NSURLSessionTask, transportTask: APIRequestTask, error: NSError?) {
+    private func completeTask(_ task: URLSessionTask, transportTask: APIRequestTask, error: NSError?) {
         if let completionHandler = self.completionHandlers[transportTask.taskIdentifier] {
             let data = self.recievedData[task.taskIdentifier]
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async { () -> Void in
                 completionHandler(task.originalRequest, data, task.response, error)
-            })
+            }
         }
     }
     
-    public func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
-        dispatch_async(privateQueue) {
-            let taskData = self.recievedData[dataTask.taskIdentifier] ?? NSMutableData()
-            taskData.appendData(data)
+    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+        privateQueue.async {
+            var taskData = self.recievedData[dataTask.taskIdentifier] ?? Data()
+            taskData.append(data)
             self.recievedData[dataTask.taskIdentifier] = taskData
         }
     }
     
-    public func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
-        dispatch_async(privateQueue) {
+    public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        privateQueue.async {
             if let transportTask = self.tasks.filter({ $0.isTaskForSessionTask(task) }).first {
-                if !self.transportTaskCancelled(transportTask, error: error) {
-                    self.completeTask(task, transportTask: transportTask, error: error)
+                if !self.transportTaskCancelled(transportTask, error: error as NSError?) {
+                    self.completeTask(task, transportTask: transportTask, error: error as NSError?)
                 }
                 self.finishTask(task, transportTask)
             }
