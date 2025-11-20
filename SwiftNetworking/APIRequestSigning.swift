@@ -19,7 +19,7 @@ final public class APICredentialsStorageInMemory: APICredentialsStorage {
 }
 
 public protocol APIRequestSigning {
-    func signRequest(request: NSMutableURLRequest, storage: APICredentialsStorage) throws -> NSMutableURLRequest
+    func signRequest(_ request: inout URLRequest, storage: APICredentialsStorage) throws -> URLRequest
 }
 
 /**
@@ -27,11 +27,11 @@ Signs request with access token.
 */
 public class DefaultAPIRequestSigning: APIRequestSigning {
 
-    public func signRequest(request: NSMutableURLRequest, storage: APICredentialsStorage) throws -> NSMutableURLRequest {
+    public func signRequest(_ request: inout URLRequest, storage: APICredentialsStorage) throws -> URLRequest {
         guard let accessToken = storage.accessToken else {
             throw NSError(code: .Unauthorized)
         }
-        HTTPHeader.Authorization(accessToken).setRequestHeader(request)
+        HTTPHeader.Authorization(accessToken).setRequestHeader(&request)
         return request
     }
 

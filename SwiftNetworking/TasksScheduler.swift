@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol Task {
-    typealias TaskIdentifier: Hashable
+    associatedtype TaskIdentifier: Hashable
     var taskIdentifier: TaskIdentifier {get}
 }
 
@@ -18,12 +18,12 @@ protocol Resumable {
 }
 
 protocol Cancellable {
-    func cancel(error: ErrorType?)
+    func cancel(_ error: Error?)
 }
 
-typealias ResumableTask = protocol<Task, Resumable>
+typealias ResumableTask = Task & Resumable
 
-final class TasksScheduler<T: protocol<ResumableTask, Equatable>> {
+final class TasksScheduler<T: ResumableTask & Equatable> {
     
     typealias TaskIdentifier = T.TaskIdentifier
     
@@ -37,17 +37,17 @@ final class TasksScheduler<T: protocol<ResumableTask, Equatable>> {
     var enqueuedTasks = [T]()
     var ongoingTasks = [T]()
     
-    private let privateQueue: dispatch_queue_t = dispatch_queue_create("TasksSchedulerQueue", DISPATCH_QUEUE_SERIAL)
+    private let privateQueue: DispatchQueue = DispatchQueue(label: "TasksSchedulerQueue")
     
-    func enqueue(task: T, after: [T] = []) {
-        dispatch_async(privateQueue, {
+    func enqueue(_ task: T, after: [T] = []) {
+        privateQueue.async {
             self.taskDependencies[task.taskIdentifier] = self.taskDependencies[task.taskIdentifier] ?? [] + after.map {$0.taskIdentifier}
             self.enqueuedTasks.append(task)
             self.nextTask()
-        })
+        }
     }
     
-    func canResumeTask(task: T!) -> Bool {
+    func canResumeTask(_ task: T!) -> Bool {
         if task == nil {
             return false
         }
@@ -57,7 +57,7 @@ final class TasksScheduler<T: protocol<ResumableTask, Equatable>> {
         let ongoingTasksIds = ongoingTasks.map {$0.taskIdentifier}
         
         for dependency in dependencies {
-            if enquedTasksIds.indexOf(dependency) != nil || ongoingTasksIds.indexOf(dependency) != nil {
+            if enquedTasksIds.firstIndex(of: dependency) != nil || ongoingTasksIds.firstIndex(of: dependency) != nil {
                 return false
             }
         }
@@ -68,28 +68,28 @@ final class TasksScheduler<T: protocol<ResumableTask, Equatable>> {
         return (self.ongoingTasks.count <= self.maxTasks || self.maxTasks == 0)
     }
     
-    func nextTask(finished: T? = nil) {
-        dispatch_async(privateQueue, {
-            if let finished = finished, let finishedTaskIndex = self.ongoingTasks.indexOf(finished) {
-                self.ongoingTasks.removeAtIndex(finishedTaskIndex)
+    func nextTask(_ finished: T? = nil) {
+        privateQueue.async {
+            if let finished = finished, let finishedTaskIndex = self.ongoingTasks.firstIndex(of: finished) {
+                self.ongoingTasks.remove(at: finishedTaskIndex)
             }
             var nextTask: T! = nil
             var taskIndex: Int = 0
             while self.canResumeMoreTasks() && taskIndex < self.enqueuedTasks.count {
                 nextTask = self.enqueuedTasks[taskIndex]
                 if self.canResumeTask(nextTask) {
-                    self.enqueuedTasks.removeAtIndex(taskIndex)
+                    self.enqueuedTasks.remove(at: taskIndex)
                     self.ongoingTasks.append(nextTask)
                     nextTask.resume()
                 }
                 else {
-                    taskIndex++
+                    taskIndex += 1
                 }
             }
-        })
+        }
     }
     
-    func cancel(tasks: [T], error: ErrorType?) {
+    func cancel(tasks: [T], error: Error?) {
         for task in tasks {
             if let task = task as? Cancellable {
                 task.cancel(error)
@@ -97,38 +97,38 @@ final class TasksScheduler<T: protocol<ResumableTask, Equatable>> {
         }
     }
     
-    func cancelAll(error: ErrorType?) {
-        dispatch_async(privateQueue, { () -> Void in
+    func cancelAll(_ error: Error?) {
+        privateQueue.async { () -> Void in
             let ongoing = self.ongoingTasks
             self.ongoingTasks.removeAll()
-            self.cancel(ongoing, error: error)
+            self.cancel(tasks: ongoing, error: error)
             
             let enqueued = self.enqueuedTasks
             self.enqueuedTasks.removeAll()
-            self.cancel(enqueued, error: error)
-        })
+            self.cancel(tasks: enqueued, error: error)
+        }
     }
     
-    func cancelTasksDependentOnTask(taskIdentifier: T.TaskIdentifier, error: ErrorType?) {
-        dispatch_async(privateQueue) {
+    func cancelTasksDependentOnTask(_ taskIdentifier: T.TaskIdentifier, error: Error?) {
+        privateQueue.async {
             var tasksToCancel = [T]()
             let ongoing = self.ongoingTasks
-            for (taskIndex, task) in ongoing.enumerate() {
+            for (taskIndex, task) in ongoing.enumerated() {
                 if let dependencies = self.taskDependencies[task.taskIdentifier],
-                    let _ = dependencies.indexOf(taskIdentifier) {
-                        self.ongoingTasks.removeAtIndex(taskIndex)
+                    let _ = dependencies.firstIndex(of: taskIdentifier) {
+                        self.ongoingTasks.remove(at: taskIndex)
                         tasksToCancel.append(task)
                 }
             }
             let enqueued = self.enqueuedTasks
-            for (taskIndex, task) in enqueued.enumerate() {
+            for (taskIndex, task) in enqueued.enumerated() {
                 if let dependencies = self.taskDependencies[task.taskIdentifier],
-                    let _ = dependencies.indexOf(taskIdentifier) {
-                        self.enqueuedTasks.removeAtIndex(taskIndex)
+                    let _ = dependencies.firstIndex(of: taskIdentifier) {
+                        self.enqueuedTasks.remove(at: taskIndex)
                         tasksToCancel.append(task)
                 }
             }
-            self.cancel(tasksToCancel, error: error)
+            self.cancel(tasks: tasksToCancel, error: error)
         }
     }
     

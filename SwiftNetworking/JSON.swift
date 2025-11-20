@@ -8,7 +8,7 @@
 
 import Foundation
 
-public typealias JSONDictionary = [String: AnyObject]
+public typealias JSONDictionary = [String: Any]
 
 public protocol JSONDecodable {
     init?(jsonDictionary: JSONDictionary?)
@@ -28,7 +28,7 @@ public protocol JSONEncodable {
 }
 
 public protocol JSONContainer {
-    typealias Element
+    associatedtype Element
     
     var value: Element {get set}
     
@@ -74,42 +74,46 @@ extension Dictionary {
     }
 }
 
-func +<K: Hashable,V>(var lhs: [K: V], rhs: (K, V)) -> [K: V] {
-    return lhs.append(rhs)
+func +<K: Hashable,V>(lhs: inout [K: V], rhs: (K, V)) -> [K: V] {
+    return lhs.append(element: rhs)
 }
 
 //MARK: - Subscript
-extension JSONObject: DictionaryLiteralConvertible {
+extension JSONObject: ExpressibleByDictionaryLiteral {
     
-    public init(dictionaryLiteral elements: (String, AnyObject)...) {
-        self.init(elements.reduce([:]) { $0 + $1 })
+    public init(dictionaryLiteral elements: (String, Any)...) {
+        var dict: [String: Any] = [:]
+        for (key, value) in elements {
+            dict[key] = value
+        }
+        self.init(dict)
     }
     
-    public subscript(keyPaths: String...) -> AnyObject? {
-        return keyPath(keyPaths.joinWithSeparator("."))
+    public subscript(keyPaths: String...) -> Any? {
+        return keyPath(keyPaths.joined(separator: "."))
     }
     
-    public func keyPath<T: JSONDecodable>(keyPath: String) -> [T]? {
+    public func keyPath<T: JSONDecodable>(_ keyPath: String) -> [T]? {
         if let jsonDict: [JSONDictionary] = self.keyPath(keyPath) {
-            return jsonDict.flatMap { T(jsonDictionary: $0) }
+            return jsonDict.compactMap { T(jsonDictionary: $0) }
         }
         return nil
     }
 
-    public func keyPath<T: JSONDecodable>(keyPath: String) -> T? {
+    public func keyPath<T: JSONDecodable>(_ keyPath: String) -> T? {
         if let jsonDict: JSONDictionary = self.keyPath(keyPath) {
             return T(jsonDictionary: jsonDict)
         }
         return nil
     }
 
-    public func keyPath<T>(keyPath: String) -> T? {
+    public func keyPath<T>(_ keyPath: String) -> T? {
         guard let paths = partitionKeyPath(keyPath) else { return nil }
         return (paths.count == 1 ? value[keyPath] : resolve(paths)) as? T
     }
     
-    private func partitionKeyPath(keyPath: String) -> [String]? {
-        var paths = keyPath.componentsSeparatedByString(".")
+    private func partitionKeyPath(_ keyPath: String) -> [String]? {
+        var paths = keyPath.components(separatedBy: ".")
         var key: String!
         var partitionedPaths = [String]()
         repeat {
@@ -122,7 +126,7 @@ extension JSONObject: DictionaryLiteralConvertible {
         return partitionedPaths
     }
     
-    private func resolve(var keyPaths: [String]) -> AnyObject? {
+    private func resolve(_ keyPaths: inout [String]) -> Any? {
         var result = value[keyPaths.removeFirst()]
         while keyPaths.count > 1 && result != nil {
             let key = keyPaths.removeFirst()
@@ -134,19 +138,19 @@ extension JSONObject: DictionaryLiteralConvertible {
         return nil
     }
     
-    private func resolve(key: String, value: AnyObject) -> AnyObject? {
-        if key.hasPrefix("@"), let array = value as? Array<AnyObject>  {
+    private func resolve(_ key: String, value: Any) -> Any? {
+        if key.hasPrefix("@"), let array = value as? Array<Any>  {
             return resolve(key, array: array)
         }
-        else if value is JSONDictionary {
-            return value[key]
+        else if let dict = value as? JSONDictionary {
+            return dict[key]
         }
         return nil
     }
     
-    private func resolve(key: String, array: Array<AnyObject>) -> AnyObject? {
-        let startIndex = key.startIndex.advancedBy(1)
-        let substring = key.substringFromIndex(startIndex)
+    private func resolve(_ key: String, array: Array<Any>) -> Any? {
+        let startIndex = key.index(key.startIndex, offsetBy: 1)
+        let substring = String(key[startIndex...])
         return CollectionOperation(substring).collect(array)
     }
     
@@ -169,7 +173,7 @@ extension JSONObject: DictionaryLiteralConvertible {
             }
         }
         
-        func collect(array: Array<AnyObject>) -> AnyObject? {
+        func collect(_ array: Array<Any>) -> Any? {
             switch self {
             case .Index(let index):
                 return array[index]
@@ -178,7 +182,7 @@ extension JSONObject: DictionaryLiteralConvertible {
             case .Last:
                 return array.last
             case .KeyPath(let keyPath):
-                return (array as NSArray).valueForKeyPath("@\(keyPath)")
+                return (array as NSArray).value(forKeyPath: "@\(keyPath)")
             }
         }
     }
@@ -187,18 +191,18 @@ extension JSONObject: DictionaryLiteralConvertible {
 
 //MARK: - NSData
 
-extension NSData {
+extension Data {
 
     public func decodeToJSON() throws -> JSONDictionary? {
-        return try NSJSONSerialization.JSONObjectWithData(self, options: NSJSONReadingOptions()) as? JSONDictionary
+        return try JSONSerialization.jsonObject(with: self, options: JSONSerialization.ReadingOptions()) as? JSONDictionary
     }
 
-    public func decodeToJSON() throws -> AnyObject? {
-        return try NSJSONSerialization.JSONObjectWithData(self, options: [.AllowFragments])
+    public func decodeToJSON() throws -> Any? {
+        return try JSONSerialization.jsonObject(with: self, options: [.allowFragments])
     }
 
     public func decodeToJSON() throws -> [JSONDictionary]? {
-        return try NSJSONSerialization.JSONObjectWithData(self, options: NSJSONReadingOptions()) as? [JSONDictionary]
+        return try JSONSerialization.jsonObject(with: self, options: JSONSerialization.ReadingOptions()) as? [JSONDictionary]
     }
 
     public func decodeToJSON<J: JSONDecodable>() throws -> J? {
@@ -207,31 +211,31 @@ extension NSData {
 
     public func decodeToJSON<J: JSONDecodable>() throws -> [J]? {
         let array: [JSONDictionary]? = try self.decodeToJSON()
-        return array?.flatMap { J(jsonDictionary: $0) }
+        return array?.compactMap { J(jsonDictionary: $0) }
     }
     
 }
 
 extension JSONEncodable {
-    public func encodeJSON() throws -> NSData {
+    public func encodeJSON() throws -> Data {
         return try serializeJSON(self.jsonDictionary)
     }
 }
 
-public func encodeJSONDictionary(jsonDictionary: JSONDictionary) throws -> NSData {
+public func encodeJSONDictionary(_ jsonDictionary: JSONDictionary) throws -> Data {
     return try serializeJSON(jsonDictionary)
 }
 
-public func encodeJSONArray(jsonArray: [JSONDictionary]) throws -> NSData {
+public func encodeJSONArray(_ jsonArray: [JSONDictionary]) throws -> Data {
     return try serializeJSON(jsonArray)
 }
 
-public func encodeJSONObjectsArray(objects: [JSONEncodable]) throws -> NSData {
+public func encodeJSONObjectsArray(_ objects: [JSONEncodable]) throws -> Data {
     return try serializeJSON(objects.map { $0.jsonDictionary })
 }
 
-private func serializeJSON(obj: AnyObject) throws -> NSData {
-    return try NSJSONSerialization.dataWithJSONObject(obj, options: NSJSONWritingOptions())
+private func serializeJSON(_ obj: Any) throws -> Data {
+    return try JSONSerialization.data(withJSONObject: obj, options: JSONSerialization.WritingOptions())
 }
 
 extension Optional {

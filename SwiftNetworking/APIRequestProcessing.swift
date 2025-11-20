@@ -9,26 +9,26 @@
 import Foundation
 
 public protocol APIRequestProcessing {
-    func processRequest(request: APIRequestType) throws -> NSMutableURLRequest
+    func processRequest(_ request: APIRequestType) throws -> URLRequest
 }
 
-public func percentEncodedQueryString(query: APIRequestQuery) -> String? {
-    let components = NSURLComponents()
-    components.queryItems = NSURLQueryItem.queryItems(query)
+public func percentEncodedQueryString(_ query: APIRequestQuery) -> String? {
+    let components = URLComponents()
+    components.queryItems = URLQueryItem.queryItems(query)
     return components.percentEncodedQuery
 }
 
-extension NSURLQueryItem {
-    static func queryItems(query: APIRequestQuery) -> [NSURLQueryItem]? {
+extension URLQueryItem {
+    static func queryItems(_ query: APIRequestQuery) -> [URLQueryItem]? {
         if query.count > 0 {
-            return query.map { NSURLQueryItem(name: $0, value: $1) }
+            return query.map { URLQueryItem(name: $0, value: $1) }
         }
         return nil
     }
 }
 
 /**
-Process APIRequest and returns NSURLRequest.
+Process APIRequest and returns URLRequest.
 */
 public class DefaultAPIRequestProcessing: APIRequestProcessing {
 
@@ -38,18 +38,18 @@ public class DefaultAPIRequestProcessing: APIRequestProcessing {
         self.defaultHeaders = defaultHeaders
     }
     
-    public func processRequest(request: APIRequestType) throws -> NSMutableURLRequest {
-        let components = NSURLComponents(string: request.endpoint.path)!
-        components.queryItems = NSURLQueryItem.queryItems(request.query)
-        guard let url = components.URLRelativeToURL(request.baseURL) else {
+    public func processRequest(_ request: APIRequestType) throws -> URLRequest {
+        var components = URLComponents(string: request.endpoint.path)!
+        components.queryItems = URLQueryItem.queryItems(request.query)
+        guard let url = components.url(relativeTo: request.baseURL) else {
             throw NSError(code: .BadRequest)
         }
         
-        let httpRequest = NSMutableURLRequest(URL: url)
-        httpRequest.HTTPMethod = request.endpoint.method.rawValue
-        httpRequest.HTTPBody = request.body
+        var httpRequest = URLRequest(url: url)
+        httpRequest.httpMethod = request.endpoint.method.rawValue
+        httpRequest.httpBody = request.body
         for header in defaultHeaders + request.headers {
-            header.setRequestHeader(httpRequest)
+            header.setRequestHeader(&httpRequest)
         }
         return httpRequest
     }

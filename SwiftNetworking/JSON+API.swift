@@ -10,11 +10,11 @@ import Foundation
 
 extension JSONObject: APIResponseDecodable, APIRequestDataEncodable {
     
-    public init?(apiResponseData: NSData) throws {
+    public init?(apiResponseData: Data) throws {
         self.init(try apiResponseData.decodeToJSON())
     }
     
-    public func encodeForAPIRequestData() throws -> NSData {
+    public func encodeForAPIRequestData() throws -> Data {
         return try encodeJSONDictionary(value)
     }
     
@@ -22,11 +22,11 @@ extension JSONObject: APIResponseDecodable, APIRequestDataEncodable {
 
 extension JSONArray: APIResponseDecodable, APIRequestDataEncodable {
     
-    public init?(apiResponseData: NSData) throws {
+    public init?(apiResponseData: Data) throws {
         self.init(try apiResponseData.decodeToJSON())
     }
 
-    public func encodeForAPIRequestData() throws -> NSData {
+    public func encodeForAPIRequestData() throws -> Data {
         return try encodeJSONArray(value)
     }
     
@@ -34,11 +34,11 @@ extension JSONArray: APIResponseDecodable, APIRequestDataEncodable {
 
 extension JSONArrayOf: APIResponseDecodable, APIRequestDataEncodable {
     
-    public init?(apiResponseData: NSData) throws {
+    public init?(apiResponseData: Data) throws {
         let jsonArray: [JSONDictionary]
         if let jsonArrayRootKey = T.itemsKey {
             guard let jsonDictionary: JSONDictionary = try apiResponseData.decodeToJSON(),
-                _jsonArray = jsonDictionary[jsonArrayRootKey] as? [JSONDictionary] else {
+                let _jsonArray = jsonDictionary[jsonArrayRootKey] as? [JSONDictionary] else {
                     return nil
             }
             jsonArray = _jsonArray
@@ -49,10 +49,10 @@ extension JSONArrayOf: APIResponseDecodable, APIRequestDataEncodable {
             }
             jsonArray = _jsonArray
         }
-        self = JSONArrayOf<T>(jsonArray.flatMap { T(jsonDictionary: $0) })
+        self = JSONArrayOf<T>(jsonArray.compactMap { T(jsonDictionary: $0) })
     }
 
-    public func encodeForAPIRequestData() throws -> NSData {
+    public func encodeForAPIRequestData() throws -> Data {
         if let jsonArrayRootKey = T.itemsKey {
             return try encodeJSONDictionary([jsonArrayRootKey: value.map({$0.jsonDictionary})])
         }
@@ -67,8 +67,8 @@ public protocol JSONValue: APIResponseDecodable {}
 
 extension JSONValue {
     
-    public init?(apiResponseData: NSData) throws {
-        guard let result: AnyObject = try apiResponseData.decodeToJSON() else {
+    public init?(apiResponseData: Data) throws {
+        guard let result: Any = try apiResponseData.decodeToJSON() else {
             return nil
         }
         if let result = result as? Self {
@@ -81,9 +81,9 @@ extension JSONValue {
 }
 
 extension String: JSONValue {}
-extension IntegerLiteralType: JSONValue {}
-extension FloatLiteralType: JSONValue {}
-extension BooleanLiteralType: JSONValue {}
+extension Int: JSONValue {}
+extension Double: JSONValue {}
+extension Bool: JSONValue {}
 extension JSONArray: JSONValue {}
 extension JSONObject: JSONValue {}
 
