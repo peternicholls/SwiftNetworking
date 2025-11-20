@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 public typealias JSONDictionary = [String: Any]
 
@@ -108,8 +111,8 @@ extension JSONObject: ExpressibleByDictionaryLiteral {
     }
 
     public func keyPath<T>(_ keyPath: String) -> T? {
-        guard let paths = partitionKeyPath(keyPath) else { return nil }
-        return (paths.count == 1 ? value[keyPath] : resolve(paths)) as? T
+        guard var paths = partitionKeyPath(keyPath) else { return nil }
+        return (paths.count == 1 ? value[keyPath] : resolve(&paths)) as? T
     }
     
     private func partitionKeyPath(_ keyPath: String) -> [String]? {
@@ -182,7 +185,12 @@ extension JSONObject: ExpressibleByDictionaryLiteral {
             case .Last:
                 return array.last
             case .KeyPath(let keyPath):
+                #if canImport(ObjectiveC)
                 return (array as NSArray).value(forKeyPath: "@\(keyPath)")
+                #else
+                // Fallback for platforms without NSArray.value(forKeyPath:)
+                return array.compactMap { ($0 as? [String: Any])?[keyPath] }
+                #endif
             }
         }
     }

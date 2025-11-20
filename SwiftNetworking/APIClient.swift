@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 public protocol APIClientAccessTokenRefresh: AnyObject {
     func apiClient(client: APIClient, requestToRefreshToken token: AccessToken) -> APIRequestFor<AccessToken>

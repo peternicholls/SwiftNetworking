@@ -1,0 +1,110 @@
+{
+  "": {
+    "swift-dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/master.swiftdeps"
+  },
+  "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIClient.swift": {
+    "dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIClient.d",
+    "object": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIClient.swift.o",
+    "swiftmodule": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIClient~partial.swiftmodule",
+    "swift-dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIClient.swiftdeps",
+    "diagnostics": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIClient.dia"
+  },
+  "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIRequest.swift": {
+    "dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequest.d",
+    "object": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequest.swift.o",
+    "swiftmodule": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequest~partial.swiftmodule",
+    "swift-dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequest.swiftdeps",
+    "diagnostics": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequest.dia"
+  },
+  "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIRequestProcessing.swift": {
+    "dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestProcessing.d",
+    "object": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestProcessing.swift.o",
+    "swiftmodule": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestProcessing~partial.swiftmodule",
+    "swift-dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestProcessing.swiftdeps",
+    "diagnostics": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestProcessing.dia"
+  },
+  "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIRequestSigning.swift": {
+    "dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestSigning.d",
+    "object": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestSigning.swift.o",
+    "swiftmodule": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestSigning~partial.swiftmodule",
+    "swift-dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestSigning.swiftdeps",
+    "diagnostics": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestSigning.dia"
+  },
+  "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIRequestTask.swift": {
+    "dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestTask.d",
+    "object": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestTask.swift.o",
+    "swiftmodule": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestTask~partial.swiftmodule",
+    "swift-dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestTask.swiftdeps",
+    "diagnostics": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestTask.dia"
+  },
+  "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIResponse.swift": {
+    "dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIResponse.d",
+    "object": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIResponse.swift.o",
+    "swiftmodule": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIResponse~partial.swiftmodule",
+    "swift-dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIResponse.swiftdeps",
+    "diagnostics": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIResponse.dia"
+  },
+  "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIResponseProcessing.swift": {
+    "dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIResponseProcessing.d",
+    "object": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIResponseProcessing.swift.o",
+    "swiftmodule": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIResponseProcessing~partial.swiftmodule",
+    "swift-dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIResponseProcessing.swiftdeps",
+    "diagnostics": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIResponseProcessing.dia"
+  },
+  "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/AccessToken.swift": {
+    "dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/AccessToken.d",
+    "object": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/AccessToken.swift.o",
+    "swiftmodule": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/AccessToken~partial.swiftmodule",
+    "swift-dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/AccessToken.swiftdeps",
+    "diagnostics": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/AccessToken.dia"
+  },
+  "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/Errors.swift": {
+    "dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/Errors.d",
+    "object": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/Errors.swift.o",
+    "swiftmodule": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/Errors~partial.swiftmodule",
+    "swift-dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/Errors.swiftdeps",
+    "diagnostics": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/Errors.dia"
+  },
+  "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/JSON+API.swift": {
+    "dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/JSON+API.d",
+    "object": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/JSON+API.swift.o",
+    "swiftmodule": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/JSON+API~partial.swiftmodule",
+    "swift-dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/JSON+API.swiftdeps",
+    "diagnostics": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/JSON+API.dia"
+  },
+  "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/JSON.swift": {
+    "dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/JSON.d",
+    "object": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/JSON.swift.o",
+    "swiftmodule": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/JSON~partial.swiftmodule",
+    "swift-dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/JSON.swiftdeps",
+    "diagnostics": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/JSON.dia"
+  },
+  "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/NSData+Multipart.swift": {
+    "dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/NSData+Multipart.d",
+    "object": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/NSData+Multipart.swift.o",
+    "swiftmodule": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/NSData+Multipart~partial.swiftmodule",
+    "swift-dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/NSData+Multipart.swiftdeps",
+    "diagnostics": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/NSData+Multipart.dia"
+  },
+  "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/NetworkSession.swift": {
+    "dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/NetworkSession.d",
+    "object": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/NetworkSession.swift.o",
+    "swiftmodule": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/NetworkSession~partial.swiftmodule",
+    "swift-dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/NetworkSession.swiftdeps",
+    "diagnostics": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/NetworkSession.dia"
+  },
+  "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/Pagination.swift": {
+    "dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/Pagination.d",
+    "object": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/Pagination.swift.o",
+    "swiftmodule": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/Pagination~partial.swiftmodule",
+    "swift-dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/Pagination.swiftdeps",
+    "diagnostics": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/Pagination.dia"
+  },
+  "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/TasksScheduler.swift": {
+    "dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/TasksScheduler.d",
+    "object": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/TasksScheduler.swift.o",
+    "swiftmodule": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/TasksScheduler~partial.swiftmodule",
+    "swift-dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/TasksScheduler.swiftdeps",
+    "diagnostics": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/TasksScheduler.dia"
+  }
+}

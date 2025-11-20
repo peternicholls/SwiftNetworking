@@ -1,0 +1,19 @@
+{
+  "": {
+    "swift-dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/master.swiftdeps"
+  },
+  "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.derived/SwiftNetworkingTests.swift": {
+    "dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/SwiftNetworkingTests.d",
+    "object": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/SwiftNetworkingTests.swift.o",
+    "swiftmodule": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/SwiftNetworkingTests~partial.swiftmodule",
+    "swift-dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/SwiftNetworkingTests.swiftdeps",
+    "diagnostics": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/SwiftNetworkingTests.dia"
+  },
+  "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.derived/all-discovered-tests.swift": {
+    "dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/all-discovered-tests.d",
+    "object": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/all-discovered-tests.swift.o",
+    "swiftmodule": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/all-discovered-tests~partial.swiftmodule",
+    "swift-dependencies": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/all-discovered-tests.swiftdeps",
+    "diagnostics": "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/all-discovered-tests.dia"
+  }
+}

@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 public protocol Task {
     associatedtype TaskIdentifier: Hashable
@@ -23,7 +26,7 @@ protocol Cancellable {
 
 typealias ResumableTask = Task & Resumable
 
-final class TasksScheduler<T: ResumableTask & Equatable> {
+final class TasksScheduler<T: ResumableTask & Equatable>: @unchecked Sendable {
     
     typealias TaskIdentifier = T.TaskIdentifier
     
@@ -40,7 +43,7 @@ final class TasksScheduler<T: ResumableTask & Equatable> {
     private let privateQueue: DispatchQueue = DispatchQueue(label: "TasksSchedulerQueue")
     
     func enqueue(_ task: T, after: [T] = []) {
-        privateQueue.async {
+        privateQueue.async { [task, after] in
             self.taskDependencies[task.taskIdentifier] = self.taskDependencies[task.taskIdentifier] ?? [] + after.map {$0.taskIdentifier}
             self.enqueuedTasks.append(task)
             self.nextTask()
@@ -69,7 +72,7 @@ final class TasksScheduler<T: ResumableTask & Equatable> {
     }
     
     func nextTask(_ finished: T? = nil) {
-        privateQueue.async {
+        privateQueue.async { [finished] in
             if let finished = finished, let finishedTaskIndex = self.ongoingTasks.firstIndex(of: finished) {
                 self.ongoingTasks.remove(at: finishedTaskIndex)
             }
@@ -110,7 +113,7 @@ final class TasksScheduler<T: ResumableTask & Equatable> {
     }
     
     func cancelTasksDependentOnTask(_ taskIdentifier: T.TaskIdentifier, error: Error?) {
-        privateQueue.async {
+        privateQueue.async { [taskIdentifier] in
             var tasksToCancel = [T]()
             let ongoing = self.ongoingTasks
             for (taskIndex, task) in ongoing.enumerated() {

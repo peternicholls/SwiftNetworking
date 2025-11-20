@@ -7,8 +7,11 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
-final public class APIRequestTask: Task, Resumable, Cancellable, Equatable {
+final public class APIRequestTask: Task, Resumable, Cancellable, Equatable, @unchecked Sendable {
     
     public typealias TaskIdentifier = Int
     
@@ -22,11 +25,17 @@ final public class APIRequestTask: Task, Resumable, Cancellable, Equatable {
     let session: URLSession
     let requestBuilder: () throws -> URLRequest
     
-    private static var requestTasksCounter = 0
+    private static let counterLock = NSLock()
+    nonisolated(unsafe) private static var _requestTasksCounter = 0
+    private static func nextTaskIdentifier() -> Int {
+        counterLock.lock()
+        defer { counterLock.unlock() }
+        _requestTasksCounter += 1
+        return _requestTasksCounter
+    }
     
     init(request: APIRequestType, session: URLSession, requestBuilder: @escaping (APIRequestType) throws -> URLRequest) {
-        APIRequestTask.requestTasksCounter += 1
-        self.taskIdentifier = APIRequestTask.requestTasksCounter
+        self.taskIdentifier = APIRequestTask.nextTaskIdentifier()
         self.session = session
         self.requestBuilder = { () throws -> URLRequest in
             return try requestBuilder(request)

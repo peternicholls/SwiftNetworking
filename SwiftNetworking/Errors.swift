@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 public let NetworkErrorDomain = "Network.Errors"
 
@@ -37,9 +40,9 @@ extension NSError {
         switch statusCode {
         case 200..<300: return nil
         case 401:
-            return NSError(code: .Unauthorized, userInfo: backendErrorUserInfo(statusCode, data: data))
+            return NSError(code: .Unauthorized, userInfo: backendErrorUserInfo(statusCode: statusCode, data: data))
         default:
-            return NSError(code: .BackendError, userInfo: backendErrorUserInfo(statusCode, data: data))
+            return NSError(code: .BackendError, userInfo: backendErrorUserInfo(statusCode: statusCode, data: data))
         }
     }
     

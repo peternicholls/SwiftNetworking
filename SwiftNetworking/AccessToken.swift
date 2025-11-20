@@ -7,8 +7,11 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
-public struct AccessToken: JSONDecodable, JSONEncodable, APIResponseDecodable, CustomStringConvertible, Equatable {
+public struct AccessToken: JSONDecodable, JSONEncodable, APIResponseDecodable, CustomStringConvertible, Equatable, Sendable {
     public let type: String
     public let token: String
     public let refresh: String!
@@ -75,12 +78,15 @@ extension AccessToken {
 extension AccessToken {
     
     public var jsonDictionary: JSONDictionary {
-        return [
+        var dict: JSONDictionary = [
             Keys.type: type,
             Keys.token: token,
-            Keys.refresh: refresh,
             Keys.expires: expires.timeIntervalSince1970
         ]
+        if let refresh = refresh {
+            dict[Keys.refresh] = refresh
+        }
+        return dict
     }
 }
 

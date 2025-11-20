@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 public protocol APIResponse {
     
@@ -34,7 +37,7 @@ public struct APIResponseOf<ResultType: APIResponseDecodable>: APIResponse {
         self.result = nil
     }
     
-    init(_ r: (request: URLRequest!, data: Data!, httpResponse: URLResponse!, error: Error!)) {
+    init(_ r: (request: URLRequest?, data: Data?, httpResponse: URLResponse?, error: Error?)) {
         self.init(request: r.request, data: r.data, httpResponse: r.httpResponse, error: r.error)
     }
     

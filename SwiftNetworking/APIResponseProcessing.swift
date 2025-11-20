@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 public protocol APIResponseProcessing {
     func processResponse<ResultType>(_ response: APIResponseOf<ResultType>, request: APIRequestFor<ResultType>) -> APIResponseOf<ResultType>
@@ -57,7 +60,7 @@ public class DefaultAPIResponseProcessing: APIResponseProcessing {
     final private func validateContentType<ResultType>(_ response: APIResponseOf<ResultType>, request: APIRequestFor<ResultType>) throws {
         if let contentType = response.contentType {
             for case let .Accept(acceptable) in request.headers {
-                if !acceptable.contains({ $0 == contentType }) {
+                if !acceptable.contains(where: { $0 == contentType }) {
                     throw NSError(code: .InvalidResponse)
                 }
             }

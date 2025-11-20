@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 public enum HTTPMethod: String {
     case GET    = "GET"
@@ -23,7 +26,7 @@ public protocol Endpoint {
 
 public typealias MIMEType = String
 
-public enum HTTPContentType: RawRepresentable {
+public enum HTTPContentType: RawRepresentable, Sendable {
 
     case JSON
     case form
@@ -47,7 +50,7 @@ public enum HTTPContentType: RawRepresentable {
     }
 }
 
-public enum HTTPHeader: Equatable {
+public enum HTTPHeader: Equatable, Sendable {
     
     case ContentDisposition(String)
     case Accept([HTTPContentType])

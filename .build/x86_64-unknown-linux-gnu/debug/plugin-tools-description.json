@@ -1,0 +1,1000 @@
+{
+  "builtTestProducts" : [
+    {
+      "binaryPath" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageTests.xctest",
+      "packagePath" : "/home/runner/work/SwiftNetworking/SwiftNetworking",
+      "productName" : "SwiftNetworkingPackageTests"
+    }
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+    "SwiftNetworkingPackageDiscoveredTests"
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.SwiftNetworking-x86_64-unknown-linux-gnu-debug.module" : {
+      "executable" : "/usr/share/swift/usr/bin/swiftc",
+      "fileList" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/sources",
+      "importPath" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIClient.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIRequest.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIRequestProcessing.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIRequestSigning.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIRequestTask.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIResponse.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIResponseProcessing.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/AccessToken.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/Errors.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/JSON+API.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/JSON.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/NSData+Multipart.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/NetworkSession.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/Pagination.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/TasksScheduler.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/swift-version--1BFCD5C06E9F820A.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "SwiftNetworking",
+      "moduleOutputPath" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/Modules/SwiftNetworking.swiftmodule",
+      "objects" : [
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIClient.swift.o",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequest.swift.o",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestProcessing.swift.o",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestSigning.swift.o",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestTask.swift.o",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIResponse.swift.o",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIResponseProcessing.swift.o",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/AccessToken.swift.o",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/Errors.swift.o",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/JSON+API.swift.o",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/JSON.swift.o",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/NSData+Multipart.swift.o",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/NetworkSession.swift.o",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/Pagination.swift.o",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/TasksScheduler.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "x86_64-unknown-linux-gnu",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j4",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/include/SwiftNetworking-Swift.h",
+        "-swift-version",
+        "6",
+        "-g",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "swiftnetworking",
+        "-Xcc",
+        "-fno-omit-frame-pointer"
+      ],
+      "outputFileMapPath" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIClient.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequest.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestProcessing.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestSigning.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestTask.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIResponse.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIResponseProcessing.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/AccessToken.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/Errors.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/JSON+API.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/JSON.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/NSData+Multipart.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/NetworkSession.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/Pagination.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/TasksScheduler.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/Modules/SwiftNetworking.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIClient.swift",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIRequest.swift",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIRequestProcessing.swift",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIRequestSigning.swift",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIRequestTask.swift",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIResponse.swift",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIResponseProcessing.swift",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/AccessToken.swift",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/Errors.swift",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/JSON+API.swift",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/JSON.swift",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/NSData+Multipart.swift",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/NetworkSession.swift",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/Pagination.swift",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/TasksScheduler.swift"
+      ],
+      "tempsPath" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.SwiftNetworkingPackageDiscoveredTests-x86_64-unknown-linux-gnu-debug.module" : {
+      "executable" : "/usr/share/swift/usr/bin/swiftc",
+      "fileList" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/sources",
+      "importPath" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.derived/SwiftNetworkingTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.derived/all-discovered-tests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/swift-version--1BFCD5C06E9F820A.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/Modules/SwiftNetworkingTests.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "SwiftNetworkingPackageDiscoveredTests",
+      "moduleOutputPath" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/Modules/SwiftNetworkingPackageDiscoveredTests.swiftmodule",
+      "objects" : [
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/SwiftNetworkingTests.swift.o",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/all-discovered-tests.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "x86_64-unknown-linux-gnu",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j4",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/include/SwiftNetworkingPackageDiscoveredTests-Swift.h",
+        "-g",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "swiftnetworking",
+        "-Xcc",
+        "-fno-omit-frame-pointer"
+      ],
+      "outputFileMapPath" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/SwiftNetworkingTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/all-discovered-tests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/Modules/SwiftNetworkingPackageDiscoveredTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.derived/SwiftNetworkingTests.swift",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.derived/all-discovered-tests.swift"
+      ],
+      "tempsPath" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.SwiftNetworkingPackageTests-x86_64-unknown-linux-gnu-debug.module" : {
+      "executable" : "/usr/share/swift/usr/bin/swiftc",
+      "fileList" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageTests.build/sources",
+      "importPath" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageTests.derived/runner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/swift-version--1BFCD5C06E9F820A.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/Modules/SwiftNetworkingTests.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/Modules/SwiftNetworkingPackageDiscoveredTests.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "SwiftNetworkingPackageTests",
+      "moduleOutputPath" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/Modules/SwiftNetworkingPackageTests.swiftmodule",
+      "objects" : [
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageTests.build/runner.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "x86_64-unknown-linux-gnu",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j4",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageTests.build/include/SwiftNetworkingPackageTests-Swift.h",
+        "-g",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "swiftnetworking",
+        "-Xcc",
+        "-fno-omit-frame-pointer"
+      ],
+      "outputFileMapPath" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageTests.build/runner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/Modules/SwiftNetworkingPackageTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageTests.derived/runner.swift"
+      ],
+      "tempsPath" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageTests.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.SwiftNetworkingTests-x86_64-unknown-linux-gnu-debug.module" : {
+      "executable" : "/usr/share/swift/usr/bin/swiftc",
+      "fileList" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingTests.build/sources",
+      "importPath" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworkingTests/NSDataMultipartTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworkingTests/SwiftNetworkingTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/swift-version--1BFCD5C06E9F820A.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/Modules/SwiftNetworking.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "SwiftNetworkingTests",
+      "moduleOutputPath" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/Modules/SwiftNetworkingTests.swiftmodule",
+      "objects" : [
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingTests.build/NSDataMultipartTests.swift.o",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingTests.build/SwiftNetworkingTests.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "x86_64-unknown-linux-gnu",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j4",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-swift-version",
+        "6",
+        "-g",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "swiftnetworking",
+        "-Xcc",
+        "-fno-omit-frame-pointer"
+      ],
+      "outputFileMapPath" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingTests.build/NSDataMultipartTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingTests.build/SwiftNetworkingTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/Modules/SwiftNetworkingTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworkingTests/NSDataMultipartTests.swift",
+        "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworkingTests/SwiftNetworkingTests.swift"
+      ],
+      "tempsPath" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingTests.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "SwiftNetworking" : [
+      "/usr/share/swift/usr/bin/swiftc",
+      "-module-name",
+      "SwiftNetworking",
+      "-package-name",
+      "swiftnetworking",
+      "-c",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIClient.swift",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIRequest.swift",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIRequestProcessing.swift",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIRequestSigning.swift",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIRequestTask.swift",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIResponse.swift",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIResponseProcessing.swift",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/AccessToken.swift",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/Errors.swift",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/JSON+API.swift",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/JSON.swift",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/NSData+Multipart.swift",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/NetworkSession.swift",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/Pagination.swift",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/TasksScheduler.swift",
+      "-I",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/Modules",
+      "-target",
+      "x86_64-unknown-linux-gnu",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j4",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/include/SwiftNetworking-Swift.h",
+      "-swift-version",
+      "6",
+      "-g",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "swiftnetworking",
+      "-Xcc",
+      "-fno-omit-frame-pointer",
+      "-driver-use-frontend-path",
+      "/usr/share/swift/usr/bin/swiftc"
+    ],
+    "SwiftNetworkingPackageDiscoveredTests" : [
+      "/usr/share/swift/usr/bin/swiftc",
+      "-module-name",
+      "SwiftNetworkingPackageDiscoveredTests",
+      "-package-name",
+      "swiftnetworking",
+      "-c",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.derived/SwiftNetworkingTests.swift",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.derived/all-discovered-tests.swift",
+      "-I",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/Modules",
+      "-target",
+      "x86_64-unknown-linux-gnu",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j4",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/include/SwiftNetworkingPackageDiscoveredTests-Swift.h",
+      "-g",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "swiftnetworking",
+      "-Xcc",
+      "-fno-omit-frame-pointer",
+      "-driver-use-frontend-path",
+      "/usr/share/swift/usr/bin/swiftc"
+    ],
+    "SwiftNetworkingPackageTests" : [
+      "/usr/share/swift/usr/bin/swiftc",
+      "-module-name",
+      "SwiftNetworkingPackageTests",
+      "-package-name",
+      "swiftnetworking",
+      "-c",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageTests.derived/runner.swift",
+      "-I",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/Modules",
+      "-target",
+      "x86_64-unknown-linux-gnu",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j4",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageTests.build/include/SwiftNetworkingPackageTests-Swift.h",
+      "-g",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "swiftnetworking",
+      "-Xcc",
+      "-fno-omit-frame-pointer",
+      "-driver-use-frontend-path",
+      "/usr/share/swift/usr/bin/swiftc"
+    ],
+    "SwiftNetworkingTests" : [
+      "/usr/share/swift/usr/bin/swiftc",
+      "-module-name",
+      "SwiftNetworkingTests",
+      "-package-name",
+      "swiftnetworking",
+      "-c",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworkingTests/NSDataMultipartTests.swift",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworkingTests/SwiftNetworkingTests.swift",
+      "-I",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/Modules",
+      "-target",
+      "x86_64-unknown-linux-gnu",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j4",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-swift-version",
+      "6",
+      "-g",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "swiftnetworking",
+      "-Xcc",
+      "-fno-omit-frame-pointer",
+      "-driver-use-frontend-path",
+      "/usr/share/swift/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "SwiftNetworking" : [
+
+    ],
+    "SwiftNetworkingPackageDiscoveredTests" : [
+      "SwiftNetworkingTests",
+      "SwiftNetworking"
+    ],
+    "SwiftNetworkingPackageTests" : [
+      "SwiftNetworkingPackageDiscoveredTests",
+      "SwiftNetworkingTests",
+      "SwiftNetworking"
+    ],
+    "SwiftNetworkingTests" : [
+      "SwiftNetworking"
+    ]
+  },
+  "testDiscoveryCommands" : {
+    "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.derived/all-discovered-tests.swift" : {
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingTests.build/NSDataMultipartTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingTests.build/SwiftNetworkingTests.swift.o"
+        }
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.derived/SwiftNetworkingTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.derived/all-discovered-tests.swift"
+        }
+      ]
+    }
+  },
+  "testEntryPointCommands" : {
+    "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageTests.derived/runner.swift" : {
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/Modules/SwiftNetworkingPackageDiscoveredTests.swiftmodule"
+        }
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageTests.derived/runner.swift"
+        }
+      ]
+    }
+  },
+  "traitConfiguration" : {
+    "default" : {
+
+    }
+  },
+  "writeCommands" : {
+    "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIClient.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIRequest.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIRequestProcessing.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIRequestSigning.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIRequestTask.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIResponse.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/APIResponseProcessing.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/AccessToken.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/Errors.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/JSON+API.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/JSON.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/NSData+Multipart.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/NetworkSession.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/Pagination.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworking/TasksScheduler.swift"
+        }
+      ],
+      "outputFilePath" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/sources"
+    },
+    "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.derived/SwiftNetworkingTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.derived/all-discovered-tests.swift"
+        }
+      ],
+      "outputFilePath" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/sources"
+    },
+    "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageTests.derived/runner.swift"
+        }
+      ],
+      "outputFilePath" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageTests.build/sources"
+    },
+    "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageTests.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIClient.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequest.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestProcessing.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestSigning.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIRequestTask.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIResponse.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/APIResponseProcessing.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/AccessToken.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/Errors.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/JSON+API.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/JSON.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/NSData+Multipart.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/NetworkSession.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/Pagination.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/SwiftNetworking.swiftmodule.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworking.build/TasksScheduler.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/SwiftNetworkingPackageDiscoveredTests.swiftmodule.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/SwiftNetworkingTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageDiscoveredTests.build/all-discovered-tests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageTests.build/SwiftNetworkingPackageTests.swiftmodule.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageTests.build/runner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingTests.build/NSDataMultipartTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingTests.build/SwiftNetworkingTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingTests.build/SwiftNetworkingTests.swiftmodule.o"
+        }
+      ],
+      "outputFilePath" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingPackageTests.product/Objects.LinkFileList"
+    },
+    "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworkingTests/NSDataMultipartTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/runner/work/SwiftNetworking/SwiftNetworking/SwiftNetworkingTests/SwiftNetworkingTests.swift"
+        }
+      ],
+      "outputFilePath" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/SwiftNetworkingTests.build/sources"
+    },
+    "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/swift-version--1BFCD5C06E9F820A.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/usr/share/swift/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/home/runner/work/SwiftNetworking/SwiftNetworking/.build/x86_64-unknown-linux-gnu/debug/swift-version--1BFCD5C06E9F820A.txt"
+    }
+  }
+}

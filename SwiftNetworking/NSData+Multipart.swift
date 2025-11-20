@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 public struct MultipartBodyItem: APIRequestDataEncodable, Equatable {
     let data: Data
@@ -202,16 +205,15 @@ extension Data {
     }
     
     private func subRange(_ boundary: Data, boundaryRange: NSRange) -> NSRange? {
-        let searchRange = NSSubstractRange(NSMakeRange(0, count), boundaryRange)
+        let searchRange = NSSubstractRange(fromRange: NSMakeRange(0, count), boundaryRange)
         let nextBoundaryRange = (self as NSData).range(of: boundary, options: NSData.SearchOptions(), in: searchRange)
         var subRange: NSRange?
         if nextBoundaryRange.location != NSNotFound {
-            subRange = NSRangeInterval(boundaryRange, toRange: nextBoundaryRange)
+            subRange = NSRangeInterval(fromRange: boundaryRange, toRange: nextBoundaryRange)
         }
         else if (NSMaxRange(boundaryRange) < count) {
             subRange = searchRange
         }
         return subRange
     }
-}
 }

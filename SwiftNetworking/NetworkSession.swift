@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 public protocol NetworkSession: AnyObject {
     
@@ -16,9 +19,9 @@ public protocol NetworkSession: AnyObject {
     var credentialsStorage: APICredentialsStorage {get}
 }
 
-public class NetworkSessionImp: NSObject, NetworkSession, URLSessionDataDelegate {
+public class NetworkSessionImp: NSObject, NetworkSession, URLSessionDataDelegate, @unchecked Sendable {
     
-    private typealias TaskCompletionHandler = (URLRequest!, Data!, URLResponse!, Error!) -> Void
+    private typealias TaskCompletionHandler = (URLRequest?, Data?, URLResponse?, Error?) -> Void
     private typealias TaskIdentifier = APIRequestTask.TaskIdentifier
     
     private(set) public var session: URLSession!
@@ -94,8 +97,8 @@ public class NetworkSessionImp: NSObject, NetworkSession, URLSessionDataDelegate
     }
     
     private func completeRequest<ResultType>(_ request: APIRequestFor<ResultType>, withHandler completionHandler: ((APIResponseOf<ResultType>) -> Void)?) -> TaskCompletionHandler {
-        return { response in
-            let apiResponse = self.responseProcessing.processResponse(APIResponseOf<ResultType>(response), request: request)
+        return { urlRequest, data, urlResponse, error in
+            let apiResponse = self.responseProcessing.processResponse(APIResponseOf<ResultType>(request: urlRequest, data: data, httpResponse: urlResponse, error: error), request: request)
             
             if let token = apiResponse.result as? AccessToken {
                 self.accessToken = self.accessToken?.refreshTokenWithToken(token) ?? token

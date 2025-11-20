@@ -7,13 +7,16 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 public protocol APIRequestProcessing {
     func processRequest(_ request: APIRequestType) throws -> URLRequest
 }
 
 public func percentEncodedQueryString(_ query: APIRequestQuery) -> String? {
-    let components = URLComponents()
+    var components = URLComponents()
     components.queryItems = URLQueryItem.queryItems(query)
     return components.percentEncodedQuery
 }
